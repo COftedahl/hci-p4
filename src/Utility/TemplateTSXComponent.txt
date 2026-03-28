@@ -1,0 +1,14 @@
+
+interface ClassNameProps {
+
+}
+
+const ClassName: React.FC<FooterProps> = (props: ClassNameProps) => {
+
+  return (
+    <>
+    </>
+  );
+}
+
+export default ClassName;
