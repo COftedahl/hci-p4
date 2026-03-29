@@ -1,6 +1,6 @@
 import IAttendanceDay from '../Types/IAttendanceDay';
 
-const attendance: IAttendanceDay[] = [
+const allAttendance: IAttendanceDay[] = [
     {
         "date": "2026-04-01",
         "totalAttendance": 97,
@@ -2453,3 +2453,6 @@ const attendance: IAttendanceDay[] = [
         ]
     }
 ];
+
+
+export default allAttendance;

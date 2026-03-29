@@ -8,6 +8,7 @@ declare global {
 
 export type Component = (props: Record<string, any>) => any;
 
+const STATE_VAR_PREFIX: string = "data_VAR_";
 const elementTracker: Set<Element> = new Set();
 const elementIDMap: Map<Element, string> = new Map();
 let currID: number = 0;
@@ -23,8 +24,20 @@ export const jsx = {
       let res: any = null;
       let newID: string = "id_" + currID;
       let elID: string = newID;
+      let stateObj: any = {};
+      if (props._state !== undefined) {
+        stateObj = props._state;
+      }
       if (props.id !== undefined) {
         elID = props.id;
+        const existingEl = document.getElementById(elID);
+        if (existingEl) {
+          for (let attr in existingEl) {
+            if (attr.startsWith(STATE_VAR_PREFIX)) {
+              stateObj[attr] = (existingEl as any)[attr]
+            }
+          }
+        }
       } else {
         currID += 1;
       }
@@ -44,7 +57,6 @@ export const jsx = {
         // @return: [a, b] where a is the variable, and b is the set function for the variable
         // const useStateFunction = (varName: string, initialVal: any): [() => any, (data: any) => void] => {
         const useStateFunction = (varName: string, initialVal: any): any => {
-          const STATE_VAR_PREFIX: string = "data_VAR_";
           if (varName.length === 0) {
             return null;
           }
@@ -52,38 +64,24 @@ export const jsx = {
             const el: Element | null = document.getElementById(elID);
             if (el !== null) {
               
-              // console.log("Setting State ", elID)
-              // if (el) {
-              //   el.parentNode?.replaceChild(jsx.component(component, props, children), el)
-              //   console.log("Replaced");
-              // }
-
-              // const CURRENT_INDEX_ATTRIBUTE: string = 'data_attrName';
-              // let currVarStr: string | null = (el.getAttribute(CURRENT_INDEX_ATTRIBUTE));
-              // if (currVarStr === null) {
-              //   el.setAttribute(CURRENT_INDEX_ATTRIBUTE, '1');
-              //   currVarStr = '1';
-              // }
-              // const currVarIndex: number = Number.parseInt(currVarStr);
-              el.setAttribute(STATE_VAR_PREFIX + varName, data);
-              // const children = el.childNodes;
-              // for (let i = 0; i < children.length; i += 1) {
-              //   el.replaceChild(jsx.component(children[i] as any, (children[i] as any).props), children[i])
-              // }
-              // console.log(el)
               if (el) {
                 if (el.parentNode) {
-                  const stateObj = {...props._state};
-                  stateObj[STATE_VAR_PREFIX + varName] = data
+                  // console.log(el);
+                  const stateObj = (el.getAttribute(STATE_VAR_PREFIX) !== null ? {...props._state, ...JSON.parse(el.getAttribute(STATE_VAR_PREFIX) as string)} : {...props._state} )
+                  
+                  stateObj[varName] = data
                   // console.log(stateObj)
-                  const result = jsx.component(component, {...props, id: elID, _state: stateObj}, children)
-                  // console.log(result);
-                  el.parentNode?.replaceChild(result, el)
+                  const result = jsx.component(component, {...props, id: elID, _state: stateObj}, children);
+                  // for (let attr in stateObj) {
+                  //   (result as Element).setAttribute(attr, (stateObj[attr]));
+                  // }
+                  (result as Element).setAttribute(STATE_VAR_PREFIX, JSON.stringify(stateObj));
+                  
+                  el.parentNode?.replaceChild(result, el);
                   // console.log("Replaced");
                 }
                 // el.parentNode?.replaceChild(jsx.component(component, props, children), el)
               }
-
             }
           }
 
@@ -99,11 +97,11 @@ export const jsx = {
           }
 
           // return [() => document.getElementById(elID)?.getAttribute("--" + currVarStr), setStateFunc];
-          if (props._state !== undefined && props._state[STATE_VAR_PREFIX + varName] !== undefined) {
-            document.getElementById(elID)?.setAttribute("data_VAR_" + varName, props._state[STATE_VAR_PREFIX + varName]);
+          if (props._state !== undefined && props._state[varName] !== undefined) {
+            document.getElementById(elID)?.setAttribute("data_VAR_" + varName, props._state[varName]);
           }
           const returnObj = {};
-          (returnObj as any)[varName] = () => (isLoadedStr === undefined || isLoadedStr.length < 1 || isLoadedStr === "NOT LOADED" ? (props._state !== undefined && props._state[STATE_VAR_PREFIX + varName] !== undefined ? props._state[STATE_VAR_PREFIX + varName] : initialVal) : document.getElementById(elID)?.getAttribute("data_VAR_" + varName));
+          (returnObj as any)[varName] = () => (isLoadedStr === undefined || isLoadedStr.length < 1 || isLoadedStr === "NOT LOADED" ? (props._state !== undefined && props._state[varName] !== undefined ? props._state[varName] : initialVal) : (JSON.parse(document.getElementById(elID)?.getAttribute(STATE_VAR_PREFIX) ?? "")[varName] ?? ""));
           const setFunctName: string = "set" + varName.substring(0, 1).toUpperCase() + varName.substring(1);
           (returnObj as any)[setFunctName] = setStateFunc;
           return returnObj;
@@ -118,6 +116,7 @@ export const jsx = {
         currID += 1;
         // const res = component(props);
         res = component_with_log(props);
+        // console.log(res);
       }
       let addingEl: Element | null = res;
       // console.log("Res: ", res);
@@ -127,6 +126,10 @@ export const jsx = {
       if (addingEl !== null) {
         if (!elementTracker.has(addingEl)) {
           addingEl.setAttribute("id", elID);
+          for (let attr in stateObj) {
+            addingEl.setAttribute(attr, (stateObj[attr]))
+          }
+          // console.log(addingEl);
           elementTracker.add(addingEl);
           elementIDMap.set(addingEl, newID);
           // console.log(elementTracker)
