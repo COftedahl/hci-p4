@@ -1,6 +1,8 @@
 import Calendar from "./Calendar";
 import { dateFormatter } from '../../Common/formatter';
 import allStudents from '../data/AllStudents';
+import allAttendance from "../data/attendance";
+import IAttendanceDay from "Types/IAttendanceDay";
 import './MarkAttendancePage.css';
 
 interface MarkAttendancePageProps {
@@ -9,12 +11,20 @@ interface MarkAttendancePageProps {
 
 const MarkAttendancePage: React.FC<MarkAttendancePageProps> = (props: MarkAttendancePageProps) => {
 
+  const retrieveDatesAttendance = (date: string) => {
+    const result = allAttendance.find((attendanceDay: IAttendanceDay) => attendanceDay.date === date);
+    if (result) {
+      return result.studentsPresent
+    }
+    return []
+  }
+
   const {date, setDate} = (props as any).useState('date', dateFormatter.format(new Date(Date.UTC(2026,3,2))));
-  const {studentList, setStudentList}: {studentList: () => string[], setStudentList: (data: any) => void} = (props as any).useState('studentList', []);
+  const {studentList, setStudentList}: {studentList: () => string[], setStudentList: (data: any) => void} = (props as any).useState('studentList', retrieveDatesAttendance(date()));
 
   const setDateEffect = (data: any): void => {
     setDate(data);
-    setStudentList([]);
+    setStudentList(retrieveDatesAttendance(data));
   }
   
   const handleChange = (student: string) => {

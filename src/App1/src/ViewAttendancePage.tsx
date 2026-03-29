@@ -44,7 +44,7 @@ const ViewAttendancePage: React.FC<ViewAttendancePageProps> = (props: ViewAttend
             Students: 
           </p>
           <p>
-            {attendance().studentsPresent}
+            {attendance().studentsPresent.join(", ")}
           </p>
         </div>
       </div>
