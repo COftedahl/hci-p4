@@ -17,8 +17,10 @@
   --color_2_textContrast: var(--color_white);
   --color_3: #9ed8ff; 
   --color_3_textContrast: var(--color_black);
-  --color_3_darker: #688ea8; 
+  --color_3_darker: #84b4d4; 
   --color_3_darker_textContrast: var(--color_black);
+  --color_3_darkest: #688ea8; 
+  --color_3_darkest_textContrast: var(--color_black);
   --color_background: #ffffff; 
   --color_background_textContrast: var(--color_black);
   --color_white: rgb(255,255,255);
