@@ -1,0 +1,49 @@
+.LogWindow {
+  border: calc(0.75 * var(--standardBorderWidth)) var(--standardBorderStyle) var(--color_1_darkest);
+  border-radius: var(--standardBorderRadius);
+  background-color: var(--color_background);
+  max-height: 30%;
+  max-width: 30%;
+}
+
+.LogWindow_HeaderDiv {
+  padding: var(--standardPadding);
+  border-top-left-radius: var(--standardBorderRadius);
+  border-top-right-radius: var(--standardBorderRadius);
+  margin-bottom: var(--standardPadding);
+  border-bottom: var(--standardBorderWidth) var(--standardBorderStyle)
+    var(--color_1_darker_textContrast);
+  background-color: var(--color_1_darker);
+  color: var(--color_1_darker_textContrast);
+}
+
+.LogWindow_ContentBox {
+  padding: calc(2 * var(--standardPadding));
+  padding-top: 0px;
+}
+
+.LogWindow_ContentBox > * {
+  border-bottom: calc(0.5 * var(--standardBorderWidth)) solid var(--color_1_darkest);
+  transition: calc(0.25 * var(--transitionDuration)) var(--transitionTimingFunction)
+    background-color;
+}
+
+.LogWindow_ContentBox > *:hover {
+  background-color: var(--color_1_medium);
+}
+
+.LogWindow_ContentBox > *:last-child {
+  border-bottom: none;
+}
+
+.LogWindow_Content_LogDiv {
+  min-height: fit-content;
+}
+
+.LogWindow_Content_LogDiv.collapsed .LogWindow_Content_Log_StackTrace {
+  display: none;
+}
+
+.LogWindow_Content_Log_StackTrace {
+  color: var(--color_3_darker);
+}

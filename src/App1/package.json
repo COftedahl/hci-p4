@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "app1": "vite src/App1/index.html", 
-    "app2": "vite src/App2/index.html", 
-    "app3": "vite src/App3/index.html", 
+    "start": "vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -15,11 +13,11 @@
   "dependencies": {
     "@types/react": "^19.2.14",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-refresh": "^0.18.0"
   },
   "devDependencies": {
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.0.0",
-    "vite": "^5.0.0"
+    "@vitejs/plugin-react": "^5.0.0"
   }
 }
