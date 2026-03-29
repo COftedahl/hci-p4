@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 
 interface CalendarProps {
-  selectedDate: Date, 
+  selectedDate: string, 
   setSelectedDate: (date: Date) => void, 
 }
 
