@@ -1,0 +1,52 @@
+.Dashboard_Genre_Items_Item {
+  max-width: 10%;
+  min-width: 10%;
+  transition: var(--transitionDuration) var(--transitionTimingFunction) background-color;
+}
+
+.Dashboard_Genre_Items_Item:hover {
+  background-color: var(--color_1_darker);
+}
+
+.Dashboard_Genre_ItemsDivWrapper:hover {
+  background-color: var(--color_3_darker);
+}
+
+.Dashboard_Genre_ItemsDivWrapper:hover .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-track {
+  background-color: var(--color_3_darkest);
+}
+.Dashboard_Genre_ItemsDivWrapper:hover .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-thumb {
+  background-color: var(--color_1_darker);
+}
+
+.Dashboard_Genre_ItemsDivWrapper:hover .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-button:single-button:horizontal {
+  background-color: var(--color_2);
+  /* background-color: var(--color_transparent);
+  border-style: solid;
+  border-width: 0rem;
+  border-top: calc(2.0 * var(--standardBorderWidth)) solid var(--color_transparent);
+  border-bottom: calc(2.0 * var(--standardBorderWidth)) solid var(--color_transparent); */
+}
+
+.Dashboard_Genre_ItemsDivWrapper:hover .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  border-top-left-radius: 50%; 
+  border-bottom-left-radius: 50%;
+  /* border-right-width: calc(4.0 * var(--standardBorderWidth));
+  border-right-color: var(--color_2); */
+} 
+
+.Dashboard_Genre_ItemsDivWrapper:hover .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-button:single-button:horizontal:increment {
+  border-top-right-radius: 50%; 
+  border-bottom-right-radius: 50%;
+  /* border-left-width: calc(4.0 * var(--standardBorderWidth));
+  border-left-color: var(--color_2); */
+}
+
+.Dashboard_Genre_ItemsDiv::-webkit-scrollbar, .Dashboard_Genre_ItemsDiv::-webkit-scrollbar-button:single-button:horizontal {
+  background-color: inherit;
+  transition: var(--transitionDuration) var(--transitionTimingFunction) background-color;
+}
+
+.Dashboard_Genre_ItemsDiv:hover::-webkit-scrollbar, .Dashboard_Genre_ItemsDiv:hover::-webkit-scrollbar-button:single-button:horizontal {
+  background-color: inherit;
+}

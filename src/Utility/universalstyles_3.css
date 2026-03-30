@@ -219,12 +219,16 @@ div, ul, ol, p {
   justify-content: center;
 }
 
+.cursorAuto {
+  cursor: auto;
+}
+
 .cursorMove {
   cursor: move;
 }
 
-.cursorAuto {
-  cursor: auto;
+.cursorPointer {
+  cursor: pointer; 
 }
 
 .defaultOption {
@@ -389,6 +393,18 @@ div, ul, ol, p {
   padding-bottom: 1rem;
 }
 
+.paddingTop0 {
+  padding-top: 0px;
+}
+
+.paddingTop05 {
+  padding-top: 0.5rem;
+}
+
+.paddingTop1 {
+  padding-top: 1rem;
+}
+
 .positionAbsolute {
   position: absolute;
 }
@@ -424,6 +440,14 @@ div, ul, ol, p {
   justify-content: space-evenly;
 }
 
+.textAlignCenter {
+  text-align: center;
+}
+
+.textAlignMiddle {
+  text-align: center;
+}
+
 .top {
   top: 0px;
 }
@@ -434,6 +458,26 @@ div, ul, ol, p {
 
 .topJustify {
   justify-content: flex-start;
+}
+
+.width10 {
+  max-width: 10%;
+  min-width: 10%;
+}
+
+.width25 {
+  max-width: 25%;
+  min-width: 25%;
+}
+
+.width40 {
+  max-width: 40%;
+  min-width: 40%;
+}
+
+.width50 {
+  max-width: 50%;
+  min-width: 50%;
 }
 
 @media (max-width: 820px) {

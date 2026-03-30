@@ -1,0 +1,70 @@
+import Logger from "./Functions/JSX_Injection_Logger";
+import { jsx as reactJsx, jsxs as reactJsxs, Fragment } from "react/jsx-runtime";
+import type { JSX as JSXNamespace } from "react";
+
+declare global {
+  module JSX {
+    type IntrinsicElements = Record<keyof HTMLElementTagNameMap, Record<string, any>>;
+  }
+}
+
+export type Component = (props: Record<string, any>) => any;
+
+let __autoIdCounter = 0;
+
+function makeAutoId(type: string | Component): string {
+  __autoIdCounter += 1;
+  if (typeof type === "string") {
+    return `${type}-${__autoIdCounter}`;
+  }
+  const name = (type as any).displayName || (type as any).name || "Component";
+  return `${name}-${__autoIdCounter}`;
+}
+
+/**
+ * Wraps react/jsx-runtime's jsx/jsxs so hooks still work (React calls components),
+ * while injecting an id prop for intrinsic elements and passing an id prop to components.
+ *
+ * Note: For function components to end up with an id on a DOM node, the component
+ * must forward the id to its root DOM element (e.g. <div {...props} /> or accept id/ref).
+ */
+
+function injectIdIfNeeded(type: any, props: Record<string, any> | null) {
+  props = props == null ? {} : { ...props };
+
+  // Skip fragments entirely
+  if (type === Fragment) return props;
+
+  // If id already provided, keep it
+  if (props.id !== undefined && props.id !== null) return props;
+
+  // Generate an id and attach
+  const autoId = makeAutoId(type);
+  props.id = autoId;
+
+  // Optional: attach a log helper so components can call Logger if they want
+  // (keeps your previous logging behavior available without forcing direct calls)
+  const transformLogFunction = (data: any) => {
+    try {
+      throw new Error();
+    } catch (e: any) {
+      Logger.log(autoId, e.stack, data);
+    }
+  };
+  props.log = { ...props, log: transformLogFunction }
+  return props;
+}
+
+/**
+ * JSX runtime functions exported with the same signature React expects.
+ * Use these in your transpiler / tsconfig as the jsxImportSource or jsxFactory.
+ */
+export function jsx(type: any, props: Record<string, any> | null, key?: any) {
+  const newProps = injectIdIfNeeded(type, props);
+  return reactJsx(type, newProps, key);
+}
+
+export function jsxs(type: any, props: Record<string, any> | null, key?: any) {
+  const newProps = injectIdIfNeeded(type, props);
+  return reactJsxs(type, newProps, key);
+}
