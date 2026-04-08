@@ -17,6 +17,9 @@ const ViewAttendancePage: React.FC<ViewAttendancePageProps> = (props: ViewAttend
   const {date, setDate} = (props as any).useState('date', dateFormatter.format(new Date(Date.UTC(2026,3,2))));
   const {attendance, setAttendance}: {attendance: () => IAttendanceDay, setAttendance: (data: any) => void} = (props as any).useState('attendance', getAttendanceFromDate(date()));
 
+  (props as any).log(date());
+  (props as any).log(JSON.stringify(attendance()));
+
   const setDateEffect = (data: any): void => {
     setDate(data);
     const result = getAttendanceFromDate(data) 
@@ -24,7 +27,7 @@ const ViewAttendancePage: React.FC<ViewAttendancePageProps> = (props: ViewAttend
   }
 
   return (
-    <div className="App flexColumn gap1 spaceBetweenJustify centerAlign padding05 borderBox">
+    <div className="App flexColumn gap1 spaceBetweenJustify centerAlign padding05 borderBox" id="ViewAtt">
       <Calendar selectedDate={date()} setSelectedDate={setDateEffect}/>
       <div className="App_AttendanceDiv flexCol gap1 padding1 borderBox borderThin borderRadius">
         <p>

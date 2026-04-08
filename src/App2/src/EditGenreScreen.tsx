@@ -12,25 +12,33 @@ const EditGenreScreen: React.FC<EditGenreScreenProps> = (props: EditGenreScreenP
   const handleMoveDownClicked = (oldIndex: number) => {
     if (oldIndex > 0) {
       let oldMovies: IMovie[] = props.movies;
+      (props as any).log("Movie list before removing movie being moved: ", JSON.stringify(oldMovies));
       const removingMovie: IMovie = oldMovies[oldIndex];
+      (props as any).log("Moving ", JSON.stringify(removingMovie));
       oldMovies = oldMovies.splice(oldIndex, 1);
+      (props as any).log("Movie list after removing movie being moved: ", JSON.stringify(oldMovies));
       oldMovies.splice(oldIndex - 1, 0, removingMovie);
       props.setMovies(oldMovies);
+      (props as any).log(JSON.stringify(oldMovies));
     }
   }
 
   const handleMoveUpClicked = (oldIndex: number) => {
     if (oldIndex < props.movies.length - 1) {
       let oldMovies: IMovie[] = props.movies;
+      (props as any).log("Movie list before removing movie being moved: ", JSON.stringify(oldMovies));
       const removingMovie: IMovie = oldMovies[oldIndex];
+      (props as any).log("Moving ", JSON.stringify(removingMovie));
       oldMovies = oldMovies.splice(oldIndex, 1);
+      (props as any).log("Movie list after removing movie being moved: ", JSON.stringify(oldMovies));
       oldMovies.splice(oldIndex + 1, 0, removingMovie);
       props.setMovies(oldMovies);
+      (props as any).log(JSON.stringify(oldMovies));
     }
   }
 
   return (
-    <div className="EditGenreScreen flexCol fullWidth">
+    <div className="EditGenreScreen flexCol fullWidth" id="EditScreen">
       <p className="EditGenreScreen_TitlePar headerText padding05">
         {props.movies[0].genre}
       </p>

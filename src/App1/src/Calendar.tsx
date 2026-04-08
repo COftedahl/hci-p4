@@ -6,9 +6,10 @@ interface CalendarProps {
 }
 
 const Calendar: React.FC<CalendarProps> = (props: CalendarProps) => {
+  (props as any).log(props.selectedDate);
 
   return (
-    <div className="Calendar padding1 borderThin borderBox flexColumn centerJustify centerAlign borderRadius">
+    <div className="Calendar padding1 borderThin borderBox flexColumn centerJustify centerAlign borderRadius" id="Calendar">
       <div className="Calendar_HeaderDiv flexRow spaceBetweenJustify centerAlign padding1 borderBox">
         Select Date
       </div>

@@ -9,8 +9,10 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = (props: DashboardProps) => {
 
+  (props as any).log(JSON.stringify(props.moviesByGenre))
+
   return (
-    <div className="Dashboard flexColumn fullWidth fullHeight gap1 overflowAuto">
+    <div className="Dashboard flexColumn fullWidth fullHeight gap1 overflowAuto" id="Dashboard">
       {props.moviesByGenre.map((movies: IMovie[], index: number) => {
         return (
           <div className="Dashboard_GenreDiv flexCol fullWidth" key={index}>

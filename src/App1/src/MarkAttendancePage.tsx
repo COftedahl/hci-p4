@@ -22,6 +22,9 @@ const MarkAttendancePage: React.FC<MarkAttendancePageProps> = (props: MarkAttend
   const {date, setDate} = (props as any).useState('date', dateFormatter.format(new Date(Date.UTC(2026,3,2))));
   const {studentList, setStudentList}: {studentList: () => string[], setStudentList: (data: any) => void} = (props as any).useState('studentList', retrieveDatesAttendance(date()));
 
+  (props as any).log(date());
+  (props as any).log(studentList());
+
   const setDateEffect = (data: any): void => {
     setDate(data);
     setStudentList(retrieveDatesAttendance(data));
@@ -42,7 +45,7 @@ const MarkAttendancePage: React.FC<MarkAttendancePageProps> = (props: MarkAttend
   }
 
   return (
-    <div className="App flexColumn gap1 spaceBetweenJustify centerAlign padding05 borderBox">
+    <div className="App flexColumn gap1 spaceBetweenJustify centerAlign padding05 borderBox" id="MarkAtt">
       <Calendar selectedDate={date()} setSelectedDate={setDateEffect}/>
       <div className="App_AttendanceDiv flexCol gap1 padding1 borderBox borderThin borderRadius">
         <p>

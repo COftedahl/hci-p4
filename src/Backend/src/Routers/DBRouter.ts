@@ -3,7 +3,9 @@ import SessionLog from '../Schemas/Mongoose/SessionLog';
 import SessionLogSchema from '../Schemas/Express-Validator/Data';
 import ISessionLog from '../Types/ISessionLog';
 import { checkSchema, validationResult, matchedData } from 'express-validator';
+import { unescape } from 'validator';
 import { datetimeFormatter } from '../Utility/formatter';
+import ILog from '../Types/ILog';
 
 const dbRouter = express.Router();
 
@@ -13,7 +15,16 @@ const dbRouter = express.Router();
  */
 dbRouter.get("", async (req, res) => {
   const allLogs_Documents: any = await SessionLog.find();
-  let allLogs: ISessionLog[] = allLogs_Documents;
+  let allLogs: ISessionLog[] = allLogs_Documents.map((sessionLog: ISessionLog) => {
+    return { 
+      logs: sessionLog.logs.map((log: ILog) => {
+        return { 
+          timestamp: unescape(log.timestamp), 
+          interactionTarget: unescape(log.interactionTarget) 
+        } 
+      })
+    }
+  });
   res.json({response: allLogs}).status(200);
 })
 

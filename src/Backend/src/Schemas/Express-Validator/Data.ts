@@ -1,3 +1,5 @@
+import { escape } from "node:querystring";
+
 const SessionLogSchema = {
   logs: {
     isArray: true, 
@@ -7,11 +9,13 @@ const SessionLogSchema = {
     isString: true, 
     exists: true, 
     notEmpty: true, 
+    escape: true, 
   }, 
   'logs.*.interactionTarget': {
     isString: true, 
     exists: true, 
     notEmpty: true, 
+    escape: true, 
   }
 }
 
