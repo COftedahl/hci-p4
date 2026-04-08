@@ -4,6 +4,7 @@ import IMovie from "Types/IMovie";
 import './App.css';
 import PopupMovieInfo from "./PopupMovieInfo";
 import EditGenreScreen from "./EditGenreScreen";
+import { saveLogs } from "./logSaver";
 
 interface AppProps {
 
@@ -79,6 +80,11 @@ const App: React.FC<AppProps> = (props: AppProps) => {
       :
         ""
       }
+      <div className="flexRow centerAlign centerJustify">
+        <button type="button" className="button" onClick={saveLogs}>
+          Save Session Log
+        </button>
+      </div>
     </div>
   );
 }

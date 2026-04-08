@@ -42,6 +42,8 @@ class Logger {
     // console.log("Handling id: ",id)
     const window = Logger.getLogWindow(id);
     if (window !== null) {
+      const contentBox: HTMLCollectionOf<Element> | null = window.getElementsByClassName(CONTENT_BOX_CLASSNAME);
+
       const content: HTMLElement = document.createElement("p");
       content.setAttribute("class", "LogWindow_Content_Log_Content");
       content.append(data);
@@ -50,6 +52,7 @@ class Logger {
       stackTrace.append(caller);
       const newLog: HTMLElement = document.createElement("div");
       newLog.setAttribute("class", "LogWindow_Content_LogDiv collapsed overflowXAuto noScrollbar");
+      newLog.setAttribute("data-index", (contentBox && contentBox[0] ? "" + contentBox[0].childNodes.length : "0"));
       newLog.appendChild(content);
       newLog.appendChild(stackTrace);
 
@@ -60,14 +63,14 @@ class Logger {
         if (selection && selection.toString().length <= 0) {
           e.preventDefault();
           e.stopPropagation();
+          const indexOfErrorText: number = log.textContent.indexOf("Error");
+          console.log("PARENT ID: " + log.parentElement?.parentElement?.id + ", KEY: " + log.getAttribute("data-index") + ", Content: " + log.textContent.substring(0, Math.min(125, (indexOfErrorText >= 0 ? indexOfErrorText : log.textContent.length))));
           log.classList.toggle("collapsed");
         }
       };
 
       newLog.addEventListener("click", (e: MouseEvent) => handleLogClicked(e, newLog));
 
-      const contentBox: HTMLCollectionOf<Element> | null =
-        window.getElementsByClassName(CONTENT_BOX_CLASSNAME);
       if (contentBox.length > 0) {
         contentBox[0].appendChild(newLog);
       } else {

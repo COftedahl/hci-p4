@@ -1,4 +1,5 @@
 import './all.css';
+import { saveLogs } from './logSaver';
 import MarkAttendancePage from './MarkAttendancePage';
 import ViewAttendancePage from './ViewAttendancePage';
 
@@ -38,6 +39,11 @@ const App: React.FC<AppProps> = (props: AppProps) => {
         :
           ""
         }
+      </div>
+      <div>
+        <button type="button" className="button" onClick={saveLogs}>
+          Save Session Log
+        </button>
       </div>
     </div>
   );

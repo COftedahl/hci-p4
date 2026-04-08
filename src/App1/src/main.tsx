@@ -1,8 +1,8 @@
 import App from './App';
 import '../../Utility/universalstyles_3.css';
-import { logLogs, updateConsoleLog } from './logSaver';
+import { updateConsoleLog } from './logSaver';
 
-// updateConsoleLog();
+updateConsoleLog();
 // the following are to test the new logging
 // console.log("A")
 // console.log("47")
