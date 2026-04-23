@@ -1,6 +1,6 @@
 import LogWindow, { CONTENT_BOX_CLASSNAME } from "../Components/LogWindow.ts";
 import getRoot from "./GetRoot.ts";
-import SVGOverlay from "./SVGOverlay.ts";
+// import SVGOverlay from "./SVGOverlay.ts";
 
 class Logger {
   static documentLoaded: boolean = false;
@@ -32,29 +32,29 @@ class Logger {
   /*
    * EXISTING: get element-specific log window
    */
-  private static getLogWindow = (id: string): HTMLElement | null => {
-    const sourceEl: HTMLElement | null = document.getElementById(id);
+  // private static getLogWindow = (id: string): HTMLElement | null => {
+  //   const sourceEl: HTMLElement | null = document.getElementById(id);
 
-    if (sourceEl !== null) {
-      let el: HTMLElement | null = document.getElementById(
-        id + this.LOG_WINDOW_ID_SUFFIX
-      );
+  //   if (sourceEl !== null) {
+  //     let el: HTMLElement | null = document.getElementById(
+  //       id + this.LOG_WINDOW_ID_SUFFIX
+  //     );
 
-      if (el === null) {
-        el = LogWindow(id);
-        getRoot().appendChild(el);
+  //     if (el === null) {
+  //       el = LogWindow(id);
+  //       getRoot().appendChild(el);
 
-        const sourceElBox: DOMRect = sourceEl.getBoundingClientRect();
-        el.style.top = sourceElBox.top + "px";
-        el.style.left = sourceElBox.left + "px";
-      }
+  //       const sourceElBox: DOMRect = sourceEl.getBoundingClientRect();
+  //       el.style.top = sourceElBox.top + "px";
+  //       el.style.left = sourceElBox.left + "px";
+  //     }
 
-      SVGOverlay.drawLine(id);
-      return el;
-    }
+  //     SVGOverlay.drawLine(id);
+  //     return el;
+  //   }
 
-    return null;
-  };
+  //   return null;
+  // };
 
   /*
    * NEW: unified aggregated log window

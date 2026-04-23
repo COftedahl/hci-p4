@@ -6,6 +6,7 @@ import './all.css';
 import PopupMovieInfo from "./PopupMovieInfo";
 import EditGenreScreen from "./EditGenreScreen";
 import { saveLogs } from "./logSaver";
+import { ChangeEvent } from "react";
 
 interface AppProps {
 
@@ -89,5 +90,7 @@ const App: React.FC<AppProps> = (props: AppProps) => {
     </div>
   );
 }
+
+export const _evt: ChangeEvent | null = null;
 
 export default App;
