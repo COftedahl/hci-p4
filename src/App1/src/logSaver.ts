@@ -1,4 +1,4 @@
-import { datetimeFormatter } from '../../Common/formatter';
+import { datetimeFormatter } from '../src/formatter';
 
 const logs: {timestamp: string, interactionTarget: string}[] = [];
 const originalLog = console.log;

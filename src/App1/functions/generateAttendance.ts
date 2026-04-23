@@ -1,6 +1,6 @@
 import IAttendanceDay from '../Types/IAttendanceDay';
 import allStudents from '../data/AllStudents';
-import { dateFormatter } from '../../Common/formatter';
+import { dateFormatter } from '../src/formatter';
 
 const generateAttendance = () => {
   const NUM_ATTENDANCE_DAYS: number = 30;

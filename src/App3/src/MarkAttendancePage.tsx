@@ -1,5 +1,5 @@
 import Calendar from "./Calendar";
-import { dateFormatter } from '../../Common/formatter';
+import { dateFormatter } from '../src/formatter';
 import allStudents from '../data/AllStudents';
 import allAttendance from "../data/attendance";
 import IAttendanceDay from "Types/IAttendanceDay";
