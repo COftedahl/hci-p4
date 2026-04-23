@@ -1,7 +1,7 @@
 import App from './App';
 import '../universalstyles_3.css';
 import { updateConsoleLog } from './logSaver';
-
+console.log("Started main.tsx");
 updateConsoleLog();
 // the following are to test the new logging
 // console.log("A")
