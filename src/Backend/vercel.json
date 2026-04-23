@@ -1,8 +1,16 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "./index.html"
+  "version": 1,
+  "name": "hci p4 backend",
+  "builds": [
+    { "src": "./src/index.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { 
+      "src": "/(.*)", 
+      "dest": "/", 
+      "headers": {
+            "Access-Control-Allow-Origin": "*"
+          }
     }
   ]
 }
