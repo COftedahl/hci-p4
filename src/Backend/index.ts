@@ -1,7 +1,7 @@
 import testRouter from "./src/Routers/TestRouter";
 import dbRouter from "./src/Routers/DBRouter";
 import express from 'express';
-import dns from 'node:dns/promises';
+// import dns from 'node:dns/promises';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -11,7 +11,7 @@ const PORT = 5000;
 appRouter.use(express.json());
 appRouter.use(cors({origin: "*",}));
 dotenv.config();
-dns.setServers(['1.1.1.1', '8.8.8.8']);
+// dns.setServers(['1.1.1.1', '8.8.8.8']);
 
 mongoose
   .connect(process.env.DB_CONNECT_STRING ?? "", { dbName: process.env.DB_NAME })
