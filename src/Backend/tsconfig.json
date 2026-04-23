@@ -10,7 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src/index.ts"],
+  "include": ["index.ts"],
   "exclude": ["node_modules"],
   "lib": ["es2015"],
   "types": ["node", "express"]

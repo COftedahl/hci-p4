@@ -1,5 +1,5 @@
-import testRouter from "./Routers/TestRouter";
-import dbRouter from "./Routers/DBRouter";
+import testRouter from "./src/Routers/TestRouter";
+import dbRouter from "./src/Routers/DBRouter";
 import express from 'express';
 import dns from 'node:dns/promises';
 import mongoose from "mongoose";
