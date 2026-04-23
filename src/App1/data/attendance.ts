@@ -1,6 +1,6 @@
 import IAttendanceDay from '../Types/IAttendanceDay';
 
-const allAttendance: IAttendanceDay[] = [ 
+const allAttendance: IAttendanceDay[] = [
     {
         "date": "2026-04-01",
         "totalAttendance": 97,
