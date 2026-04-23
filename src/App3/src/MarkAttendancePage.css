@@ -1,0 +1,21 @@
+.App_MarkAttendanceDiv:hover {
+  background-color: var(--color_1_darker);
+}
+
+.App_MarkAttendance_Input {
+  border: var(--standardBorderWidth) outset var(--color_2);
+  transition: 0.2s linear background-color;
+}
+
+.App_MarkAttendance_Input.App_MarkAttendance_Input-filled {
+  background-color: var(--color_3);
+}
+
+.App_MarkAttendance_Input:hover {
+  background-color: var(--color_3_darker);
+}
+
+.App_MarkAttendance_Input:active {
+  background-color: var(--color_3_darkest);
+  transition: none;
+}
