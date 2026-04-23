@@ -21,9 +21,9 @@
     "noFallthroughCasesInSwitch": true,
 
     "jsx": "react-jsx",
-    "jsxImportSource": "../custom_package",
+    "jsxImportSource": "custom_package",
 
     "baseUrl": ".",
   },
-  "include": ["custom_package", "src",]
+  "include": ["custom_package", "src"]
 }
