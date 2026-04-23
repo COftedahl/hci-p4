@@ -29,7 +29,7 @@ export const updateConsoleLog = () => {
 
 export const saveLogs = async () => {
   console.log = originalLog;
-  const result = await fetch("http://localhost:5000/db/save", {
+  const result = await fetch("https://hci-p4-be.vercel.app/db/save", {
     method: "POST", 
     headers: {
       "Content-Type": "application/json",
