@@ -1,0 +1,487 @@
+/* universalstyles.css
+ * provides universal style rules to create a consistent look between all pages
+ */
+
+:root {
+  --color_1: #FFFFFF; 
+  --color_1_textContrast: var(--color_black);
+  --color_1_medium: #F0F0F0; 
+  --color_1_medium_textContrast: var(--color_black);
+  --color_1_darker: #DDDDDD; 
+  --color_1_darker_textContrast: var(--color_black);
+  --color_1_darkest: #AAAAAA; 
+  --color_1_darkest_textContrast: var(--color_black);
+  --color_1_lighter: #FFFFFF;
+  --color_1_lighter_textContrast: var(--color_black);
+  --color_2: #051d6e; 
+  --color_2_textContrast: var(--color_white);
+  --color_3: #9ed8ff; 
+  --color_3_textContrast: var(--color_black);
+  --color_3_darker: #84b4d4; 
+  --color_3_darker_textContrast: var(--color_black);
+  --color_3_darkest: #688ea8; 
+  --color_3_darkest_textContrast: var(--color_black);
+  --color_background: #ffffff; 
+  --color_background_textContrast: var(--color_black);
+  --color_white: rgb(255,255,255);
+  --color_grey: rgb(125,125,125);
+  --color_black: rgb(0,0,0);
+  --color_translucent_grey: rgb(0,0,0,0.2);
+  --color_transparent: rgba(0,0,0,0.0);
+
+  --standardBorderRadius: 1rem;
+  --standardBorderWidth: 0.25rem;
+  --smallerBorderWidth: 0.1rem;
+  --largeBorderWidth: 0.5rem;
+  --standardBorderStyle: solid;
+  --standardBorder: var(--standardBorderWidth) var(--standardBorderStyle) black;
+  /* --standardBoxShadow: 0.0rem 0.0rem 2.0rem 0.0rem black; */
+  --standardBoxShadow: -0.1rem 0.2rem 0.4rem 0.0rem var(--color_black);
+  --standardPadding: 0.5rem;
+  --transitionDuration: 0.25s;
+  --responsivePageSwapTransitionDuration: 1.0s;
+  --transitionTimingFunction: linear;
+  --headerZIndex: 2;
+  --responsiveHeaderHeight: 3.5rem;
+  --responsiveFooterHeight: var(--responsiveHeaderHeight);
+  --responsiveNavHeight: 2.5rem;
+  --standardTextShadow_outline_color_primary_4: -1px 0px var(--color_primary_4), 
+      1px 0px var(--color_primary_4), 0px 1px var(--color_primary_4), 0px -1px var(--color_primary_4);
+  --standardTextShadow_outline_color_secondary_1: -1px 0px var(--color_secondary_1), 
+      1px 0px var(--color_secondary_1), 0px 1px var(--color_secondary_1), 0px -1px var(--color_secondary_1);
+
+  --sidebarWidth: 20%;
+  --cardPadding: 1.5rem;
+  --headerHeight: 10%;
+  --contentHeight: 90%;
+}
+
+html, body, #root {
+  padding: 0px;
+  margin: 0px;
+  height: 100%; 
+  background: var(--color_background);
+  font-family: monospace;
+  color: var(--color_background_textContrast);
+}
+
+div, ul, ol, p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.button, .btn, .btn.button {
+  background-color: var(--color_1_lighter);
+  border: 0.2rem outset var(--color_3);
+  padding: 0.5rem;
+  outline: none;
+  border-radius: var(--standardBorderRadius);
+  transition: 0.2s linear background-color;
+  color: var(--color_1_lighter_textContrast);
+}
+
+.button:hover, .btn:hover, .btn.button:hover {
+  background-color: var(--color_1);
+  border: 0.2rem outset var(--color_3);
+  color: var(--color_1_textContrast);
+}
+
+.button:active, .btn:active, .button[type='button']:active, .btn[type='button']:active, .btn.button:active, .btn.button[type='button']:active {
+  background-color: var(--color_1_darker);
+  color: var(--color_1_darker_textContrast);
+  border: 0.2rem inset var(--color_3_darker);
+  transition: none;
+}
+
+.card {
+  border-radius: var(--standardBorderRadius);
+  border: var(--standardBorder);
+  box-shadow: var(--standardBoxShadow);
+  margin: var(--cardPadding);
+  padding: var(--cardPadding);
+  min-width: fit-content;
+  background-color: var(--color_1);
+}
+
+.divider {
+  width: 90%;
+  border-bottom: var(--standardBorder);
+}
+
+.input {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box; 
+}
+
+.headerText {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.HeaderDiv_RightSideDiv, .HeaderDiv_LeftSideDiv {
+  width: 20%;
+  min-width: 20%;
+}
+
+.HeaderDiv_RightSideDiv {
+  justify-content: flex-end;
+}
+
+.Header_LogoutForm {
+  justify-content: flex-end;
+  padding: 0.4rem;
+}
+
+.Header_Button_Logout {
+  background-color: var(--color_primary_6);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.table, .table tr, .table th, .table tr th, .table td, .table tr td {
+  border-collapse: collapse; 
+  border: 1px solid black;
+  padding: 0.2rem;
+  --bs-table-bg: none;
+}
+
+.table th, .table tr th {
+  background-color: var(--color_primary_4);
+  color: rgba(255,255,255,1.0);
+  border: 1px solid rgb(200,200,200);
+}
+
+.table tr:nth-child(even), .table tbody tr:nth-child(even) {
+  /*background-color: rgba(0,0,0,0.1);*/
+  background-color: var(--color_primary_1);
+}
+
+.table tr {
+  outline: 2px solid rgba(0,0,0,0.0);
+  border: 1px solid black;
+}
+
+.table tr:hover {
+  outline: 3px solid var(--color_secondary_1);
+}
+
+.table tr.table_headerrow:hover {
+  outline: 0px solid white;
+}
+
+.table td, .table th {
+  border: 1px solid rgba(0,0,0,1.0);
+}
+
+.border {
+  border: var(--standardBorder);
+}
+
+.borderThin {
+  border: calc(var(--standardBorderWidth) * 0.25) var(--standardBorderStyle) var(--color_black);
+}
+
+.borderBox {
+  box-sizing: border-box;
+}
+
+.borderRadius {
+  border-radius: var(--standardBorderRadius);
+}
+
+.bottom {
+  bottom: 0px;
+}
+
+.boxShadow {
+  box-shadow: var(--standardBoxShadow);
+}
+
+.carousel {
+  overflow-x: auto;              /* Enable horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Snap horizontally, force snapping */
+  scroll-behavior: smooth;       /* Smooth scroll animation */
+  -webkit-overflow-scrolling: touch; /* Better iOS scrolling */
+}
+
+.carouselItem {
+    scroll-snap-align: start;       /* Snap to the start of the slide */
+}
+
+.centerAlign {
+  align-items: center;
+}
+
+.centerJustify {
+  justify-content: center;
+}
+
+.cursorAuto {
+  cursor: auto;
+}
+
+.cursorMove {
+  cursor: move;
+}
+
+.cursorPointer {
+  cursor: pointer; 
+}
+
+.defaultOption {
+  color: var(--color_grey);
+}
+
+.flex0 {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexWrap {
+  flex-wrap: wrap;
+}
+
+.footer, .footer.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+  background-color: rgba(220,220,220,1.0);
+  text-align: center;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.gap05 {
+  gap: 0.5rem;
+}
+
+.gap1 {
+  gap: 1rem;
+}
+
+.hideScrollbars {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hideScrollbars::-webkit-scrollbar {
+  display: none;
+}
+
+.left {
+  left: 0px;
+}
+
+.leftAlign {
+  align-items: flex-start;
+}
+
+.leftJustify {
+  justify-content: flex-start;
+}
+
+.margin0 {
+  margin: 0rem;
+}
+
+.margin05 {
+  margin: 0.5rem;
+}
+
+.margin1 {
+  margin: 1rem;
+}
+
+.modalBackground {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--color_translucent_grey);
+  opacity: 1.0;
+  visibility: visible;
+  transition: var(--transitionDuration) var(--transitionTimingFunction) opacity,
+    var(--transitionDuration) var(--transitionTimingFunction) visibility;
+}
+
+.modalBackground-hidden {
+  visibility: hidden;
+  opacity: 0.0;
+  transition: var(--transitionDuration) var(--transitionTimingFunction) opacity,
+    var(--transitionDuration) var(--transitionTimingFunction) visibility var(--transitionDuration);
+}
+
+.noScrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.noScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.noSelect {
+  /* from https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.overflowAuto {
+  overflow: auto;
+}
+
+.overflowXAuto {
+  overflow-x: auto;
+}
+
+.overflowYAuto {
+  overflow-y: auto;
+}
+
+.overflowHidden {
+  overflow: hidden;
+}
+
+.padding05 {
+  padding: 0.5rem;
+}
+
+.padding1 {
+  padding: 1rem;
+}
+
+.paddingBottom0 {
+  padding-bottom: 0px;
+}
+
+.paddingBottom05 {
+  padding-bottom: 0.5rem;
+}
+
+.paddingBottom1 {
+  padding-bottom: 1rem;
+}
+
+.paddingTop0 {
+  padding-top: 0px;
+}
+
+.paddingTop05 {
+  padding-top: 0.5rem;
+}
+
+.paddingTop1 {
+  padding-top: 1rem;
+}
+
+.positionAbsolute {
+  position: absolute;
+}
+
+.positionFixed {
+  position: fixed;
+}
+
+.positionRelative {
+  position: relative;
+}
+
+.right {
+  right: 0px;
+}
+
+.select {
+  /* from https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+  -webkit-touch-callout: text; /* iOS Safari */
+    -webkit-user-select: text; /* Safari */
+     -khtml-user-select: text; /* Konqueror HTML */
+       -moz-user-select: text; /* Old versions of Firefox */
+        -ms-user-select: text; /* Internet Explorer/Edge */
+            user-select: text; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.spaceBetweenJustify {
+  justify-content: space-between;
+}
+
+.spaceEvenlyJustify {
+  justify-content: space-evenly;
+}
+
+.textAlignCenter {
+  text-align: center;
+}
+
+.textAlignMiddle {
+  text-align: center;
+}
+
+.top {
+  top: 0px;
+}
+
+.topAlign {
+  align-items: flex-start;
+}
+
+.topJustify {
+  justify-content: flex-start;
+}
+
+.width10 {
+  max-width: 10%;
+  min-width: 10%;
+}
+
+.width25 {
+  max-width: 25%;
+  min-width: 25%;
+}
+
+.width40 {
+  max-width: 40%;
+  min-width: 40%;
+}
+
+.width50 {
+  max-width: 50%;
+  min-width: 50%;
+}
+
+@media (max-width: 820px) {
+  :root {
+    --sidebarWidth: 40%;
+  }
+}

@@ -1,5 +1,5 @@
 import App from './App';
-import '../../Utility/universalstyles_3.css';
+import '../universalstyles_3.css';
 import { updateConsoleLog } from './logSaver';
 
 updateConsoleLog();
