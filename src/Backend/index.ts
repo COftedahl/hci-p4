@@ -4,7 +4,7 @@ import express from 'express';
 import dns from 'node:dns/promises';
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
-import cors from 'cors'; 
+import cors from 'cors';
 
 const appRouter = express(); 
 const PORT = 5000;
